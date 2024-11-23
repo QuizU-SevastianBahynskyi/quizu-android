@@ -1,16 +1,18 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
     namespace = "com.quizu.android_client"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.quizu.android_client"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -40,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.7"
     }
     packaging {
         resources {
@@ -65,5 +67,14 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation("com.quizu:quizu-schema:0.0.3")
+    implementation(libs.quizu.schema)
+    implementation(libs.okhttp)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.jwtdecode)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.converter.moshi)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.security.crypto)
+    debugImplementation(libs.androidx.hilt.navigation.compose)
 }
